@@ -76,7 +76,7 @@ export default function CloudSecurityPage() {
                                 <h4 className="font-bold text-slate-900 text-xs">Protect</h4>
                             </div>
                             <div className="relative z-10 flex flex-col items-center text-center px-4 bg-white">
-                                <div className="w-12 h-12 rounded-full border-2 border-primary text-primary flex items-center justify-center text-lg mb-3"><i className="fa-solid fa-radar"></i></div>
+                                <div className="w-12 h-12 rounded-full border-2 border-primary text-primary flex items-center justify-center text-lg mb-3"><i className="fa-solid fa-eye"></i></div>
                                 <h4 className="font-bold text-slate-900 text-xs">Detect</h4>
                             </div>
                             <div className="relative z-10 flex flex-col items-center text-center px-4 bg-white">

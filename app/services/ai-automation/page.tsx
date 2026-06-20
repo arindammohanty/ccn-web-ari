@@ -11,8 +11,8 @@ export default function AIAutomationPage() {
                     <div className="flex flex-col lg:flex-row items-center gap-10">
                         <div className="lg:w-1/2">
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">AI & Automation</h1>
-                            <h2 className="text-3xl font-bold text-blue-400 mb-6">Intelligent Solutions. Real Impact.</h2>
-                            <p className="text-slate-300 mb-8 text-sm leading-relaxed">CloudCom Networks helps you harness the power of AI and automation to streamline operations, enhance decision-making, and drive innovation.</p>
+                            <h2 className="text-3xl font-bold text-blue-400 mb-6">Turn repetitive work into intelligent automation.</h2>
+                            <p className="text-slate-300 mb-8 text-sm leading-relaxed">CCN’s AI Automation services help businesses work smarter by using artificial intelligence to handle routine tasks, analyze data, and make faster decisions.</p>
                             <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                     </div>
@@ -21,40 +21,23 @@ export default function AIAutomationPage() {
             <section className="py-20 bg-slateBg">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-slate-900 mb-2">Our AI & Automation Services</h2>
+                        <h2 className="text-3xl font-bold text-slate-900 mb-2">Key Offerings</h2>
                         <div className="w-16 h-1 bg-primary mx-auto mt-4"></div>
                     </div>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-brain text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">AI Strategy & Consulting</h3>
-                            <p className="text-[11px] text-slate-500">Tailored AI roadmap aligned with goals.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-gears text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">Intelligent Process Automation</h3>
-                            <p className="text-[11px] text-slate-500">Automate workflows for efficiency.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-robot text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">Machine Learning Solutions</h3>
-                            <p className="text-[11px] text-slate-500">Custom ML models for prediction.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-comments text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">Chatbots & Virtual Assistants</h3>
-                            <p className="text-[11px] text-slate-500">Enhance customer experience.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-chart-line text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">Predictive Analytics</h3>
-                            <p className="text-[11px] text-slate-500">Anticipate trends and outcomes.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-file-invoice text-3xl text-primary mb-4"></i>
-                            <h3 className="font-bold text-slate-900 text-sm mb-2">Document AI & Extraction</h3>
-                            <p className="text-[11px] text-slate-500">Extract data from documents with high accuracy.</p>
-                        </div>
+                        {[
+                            { icon: "fa-gears", title: "Intelligent Process Automation (IPA)", desc: "Automate invoice processing, customer onboarding, data entry, and more." },
+                            { icon: "fa-comments", title: "AI Chatbots & Virtual Assistants", desc: "24/7 customer support that feels human." },
+                            { icon: "fa-chart-line", title: "Predictive Analytics", desc: "Forecast demand, detect anomalies, and reduce risks." },
+                            { icon: "fa-file-invoice", title: "Document Intelligence", desc: "Automatically extract and process information from contracts, forms, and emails." },
+                            { icon: "fa-network-wired", title: "Workflow Orchestration", desc: "Connect your tools (CRM, ERP, email, databases) into seamless automated flows." }
+                        ].map((item, idx) => (
+                            <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
+                                <i className={`fa-solid ${item.icon} text-3xl text-primary mb-4`}></i>
+                                <h3 className="font-bold text-slate-900 text-sm mb-2">{item.title}</h3>
+                                <p className="text-[11px] text-slate-500">{item.desc}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

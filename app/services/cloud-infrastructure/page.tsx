@@ -44,37 +44,31 @@ export default function CloudInfrastructurePage() {
                             <i className="fa-solid fa-server text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Private Cloud</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">Dedicated cloud environment for complete control, security, and compliance.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                         <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm text-center hover:shadow-card transition-shadow">
                             <i className="fa-solid fa-cloud text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Hybrid Cloud</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">Seamlessly integrate your on-premise infrastructure with the cloud.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                         <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm text-center hover:shadow-card transition-shadow">
                             <i className="fa-solid fa-globe text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Public Cloud</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">Leverage the power of public cloud platforms for agility and innovation.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                         <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm text-center hover:shadow-card transition-shadow">
                             <i className="fa-solid fa-microchip text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Cloud Compute</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">High-performance virtual machines with flexible configurations.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                         <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm text-center hover:shadow-card transition-shadow">
                             <i className="fa-solid fa-database text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Cloud Storage</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">Secure, durable, and scalable storage for all your business data.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                         <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm text-center hover:shadow-card transition-shadow">
                             <i className="fa-solid fa-shield-virus text-4xl text-primary mb-4"></i>
                             <h3 className="font-bold text-slate-900 text-sm mb-3">Disaster Recovery</h3>
                             <p className="text-[11px] text-slate-500 mb-4 h-10">Protect your business with reliable backup and rapid recovery solutions.</p>
-                            <Link href="#" className="text-primary text-[11px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                         </div>
                     </div>
                 </div>
