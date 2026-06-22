@@ -70,7 +70,7 @@ export default function ResourcesMainPage() {
                         <div className="md:w-1/3 mb-6 md:mb-0">
                             <h3 className="text-xl font-bold text-slate-900 mb-2">Resource Library</h3>
                             <p className="text-xs text-slate-500 mb-4">Access our comprehensive library of resources designed to help you make informed decisions.</p>
-                            <button className="bg-primary hover:bg-primaryHover text-white px-5 py-2 rounded text-xs font-bold transition-colors shadow-sm">Explore All Resources &rarr;</button>
+                            {/* Removed redundant button here */}
                         </div>
                         <div className="md:w-2/3 flex justify-around w-full">
                             <div className="text-center">

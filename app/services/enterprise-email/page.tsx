@@ -12,7 +12,7 @@ export default function EnterpriseEmailPage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Enterprise Email & Collab</h1>
                             <h2 className="text-3xl font-bold text-blue-400 mb-6">Secure. Reliable. Connected.</h2>
                             <p className="text-slate-300 mb-8 text-sm leading-relaxed">Equip your teams with enterprise-grade email, calendar, and collaboration tools designed for privacy, security, and seamless productivity across all devices.</p>
-                            <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
+                            <Link href="/contact?interest=Consultation:%20Enterprise%20Email" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,21 @@
+"use client";
+
 import React from 'react';
-import Link from 'next/link';
 
 export default function GuidesPage() {
+    const handleSecureDownload = (filename: string) => {
+        const data = `Mock Payload for Guide: ${filename}\nGenerated securely on the client-side without a backend.\n\nDate: ${new Date().toLocaleDateString()}`;
+        const blob = new Blob([data], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = `${filename.replace(/ /g, '_')}.txt`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <div className="animate-fade-in">
             <section className="bg-gradient-hero border-b border-white/10 pt-16 pb-20 relative overflow-hidden">
@@ -13,7 +27,7 @@ export default function GuidesPage() {
             </section>
             <div className="h-4 bg-slateBg"></div>
             
-            <section className="py-16 bg-slateBg">
+            <section className="py-16 bg-slateBg min-h-screen">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
@@ -28,7 +42,9 @@ export default function GuidesPage() {
                                 <div className="w-12 h-12 bg-blue-50 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i className="fa-solid fa-book-open"></i></div>
                                 <h3 className="font-bold text-slate-900 mb-2 text-md leading-snug">{item.title}</h3>
                                 <p className="text-xs text-slate-500 mb-6 flex-grow">{item.desc}</p>
-                                <button className="w-full bg-slate-50 hover:bg-primary hover:text-white text-slate-700 border border-slate-200 py-2 rounded text-xs font-bold transition-colors">Download Guide <i className="fa-solid fa-download ml-1"></i></button>
+                                <button onClick={() => handleSecureDownload(item.title)} className="w-full bg-slate-50 hover:bg-primary hover:text-white text-slate-700 border border-slate-200 py-2 rounded text-xs font-bold transition-colors">
+                                    Download Guide <i className="fa-solid fa-download ml-1"></i>
+                                </button>
                             </div>
                         ))}
                     </div>
