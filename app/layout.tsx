@@ -1,28 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import "@/styles/globals.css";
-
-// Utilizing the variable font capabilities of Inter without restricting specific weights
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "URI Tech | IT Staffing & Recruitment",
-  description:
-    "URI Tech is a leading IT staffing and recruitment firm connecting exceptional talent with forward-thinking organizations across India.",
-  keywords: [
-    "IT staffing",
-    "recruitment",
-    "campus hiring",
-    "contract hiring",
-    "permanent placement",
-    "HR consulting",
-  ],
+  title: "CloudCom Networks | Building Secure Communications & Digital Infrastructure",
+  description: "Next-generation communication, cloud infrastructure, and cybersecurity.",
 };
 
 export default function RootLayout({
@@ -31,16 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      {/* Applying the flexbox and min-height directly to the body ensures a robust sticky footer structure */}
-      <body 
-        className="flex min-h-screen flex-col font-sans antialiased text-slate-900 selection:bg-orange-200 selection:text-orange-900" 
-        suppressHydrationWarning
-      >
+    <html lang="en">
+      <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+      </head>
+      <body className="text-slate-800 flex flex-col min-h-screen bg-slateBg">
         <Navbar />
-        {/* The flex-1 class forces the main content area to expand, automatically pushing the footer to the bottom */}
-        <main className="flex flex-1 flex-col w-full">
-          {children}
+        <main id="app-content" className="flex-grow">
+            {children}
         </main>
         <Footer />
       </body>
