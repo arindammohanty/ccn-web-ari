@@ -49,11 +49,11 @@ export default function WhitepapersPage() {
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">White Papers</h1>
                     <p className="text-lg text-slate-300 mb-8">In-depth research and expert insights to help you make informed decisions.</p>
                     <div className="relative max-w-2xl">
-                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 z-10"></i>
                         <input 
                             type="text" 
                             placeholder="Search white papers by keyword, topic or technology..." 
-                            className="w-full pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900"
+                            className="w-full bg-white pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-[#0b1121] placeholder:text-slate-400 relative z-0"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
