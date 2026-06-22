@@ -20,9 +20,9 @@ export default function Navbar() {
                         <span className="flex items-center"><i className="fa-solid fa-location-dot text-slate-500 mr-2"></i> Bhubaneswar, Odisha, India</span>
                     </div>
                     <div className="flex space-x-4">
-                        <Link href="#" className="hover:text-white transition-colors"><i className="fa-brands fa-linkedin-in"></i></Link>
-                        <Link href="#" className="hover:text-white transition-colors"><i className="fa-brands fa-twitter"></i></Link>
-                        <Link href="#" className="hover:text-white transition-colors"><i className="fa-brands fa-youtube"></i></Link>
+                        <Link href="https://linkedin.com" target="_blank" className="hover:text-white transition-colors"><i className="fa-brands fa-linkedin-in"></i></Link>
+                        <Link href="https://twitter.com" target="_blank" className="hover:text-white transition-colors"><i className="fa-brands fa-twitter"></i></Link>
+                        <Link href="https://youtube.com" target="_blank" className="hover:text-white transition-colors"><i className="fa-brands fa-youtube"></i></Link>
                     </div>
                 </div>
             </div>
@@ -42,18 +42,22 @@ export default function Navbar() {
                         <Link href="/about" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/about') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>About Us</Link>
                         
                         <div className="relative group h-full flex items-center cursor-pointer">
-                            <Link href="/services" className={`nav-link text-sm font-semibold transition-colors flex items-center ${isActive('/services') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Services <i className="fa-solid fa-chevron-down text-[10px] ml-1.5 opacity-50"></i></Link>
+                            <Link href="/services" className={`nav-link text-sm font-semibold transition-colors flex items-center ${isActive('/services') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Services</Link>
                         </div>
 
                         <Link href="/solutions" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/solutions') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Solutions</Link>
                         <Link href="/industries" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/industries') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Industries</Link>
-                        <Link href="/resources" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/resources') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Resources <i className="fa-solid fa-chevron-down text-[10px] ml-1.5 opacity-50"></i></Link>
+                        
+                        <div className="relative group h-full flex items-center cursor-pointer">
+                            <Link href="/resources" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/resources') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Resources</Link>
+                        </div>
+                        
                         <Link href="/support" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/support') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Support</Link>
                         <Link href="/contact" className={`nav-link h-full flex items-center text-sm font-semibold transition-colors ${isActive('/contact') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Contact</Link>
                     </div>
 
                     <div className="flex items-center space-x-4">
-                        <Link href="/contact" className="hidden md:inline-flex bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded-md font-semibold text-sm transition-colors items-center shadow-sm">Get in Touch <i className="fa-solid fa-arrow-right ml-2 text-xs"></i></Link>
+                        <Link href="/contact?interest=General%20Inquiry%20(Navbar)" className="hidden md:inline-flex bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded-md font-semibold text-sm transition-colors items-center shadow-sm">Get in Touch <i className="fa-solid fa-arrow-right ml-2 text-xs"></i></Link>
                         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-slate-600 text-2xl focus:outline-none"><i className="fa-solid fa-bars"></i></button>
                     </div>
                 </div>
@@ -69,7 +73,7 @@ export default function Navbar() {
                             <Link href="/resources" onClick={() => setIsMobileMenuOpen(false)} className={`mobile-nav-link block px-3 py-3 text-base font-medium border-b border-slate-100 ${isActive('/resources') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Resources</Link>
                             <Link href="/support" onClick={() => setIsMobileMenuOpen(false)} className={`mobile-nav-link block px-3 py-3 text-base font-medium border-b border-slate-100 ${isActive('/support') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Support</Link>
                             <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`mobile-nav-link block px-3 py-3 text-base font-medium border-b border-slate-100 ${isActive('/contact') ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}>Contact</Link>
-                            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block mt-4 text-center bg-primary text-white px-6 py-3 rounded-md font-semibold text-sm transition-colors">Get in Touch</Link>
+                            <Link href="/contact?interest=General%20Inquiry%20(Mobile%20Nav)" onClick={() => setIsMobileMenuOpen(false)} className="block mt-4 text-center bg-primary text-white px-6 py-3 rounded-md font-semibold text-sm transition-colors">Get in Touch</Link>
                         </div>
                     </div>
                 )}

@@ -11,7 +11,7 @@ export default function SolutionsPage() {
                     <p className="text-lg text-slate-300 max-w-2xl mx-auto">Tailored technology solutions that deliver real business value.</p>
                 </div>
             </section>
-            <section className="py-20 bg-slateBg">
+            <section className="py-20 bg-slateBg min-h-screen">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-slate-900 mb-2">Ready-to-Deploy Solutions</h2>
@@ -32,7 +32,12 @@ export default function SolutionsPage() {
                                 <i className={`fa-solid ${item.icon} text-3xl text-primary mb-4 group-hover:scale-110 transition-transform`}></i>
                                 <h3 className="font-bold text-slate-900 text-lg mb-2">{item.title}</h3>
                                 <p className="text-sm text-slate-500 mb-6 flex-grow">{item.desc}</p>
-                                <Link href="/contact" className="text-primary text-xs font-bold uppercase tracking-wider">Explore Solution &rarr;</Link>
+                                <Link 
+                                    href={`/contact?interest=${encodeURIComponent('Solution Inquiry: ' + item.title)}`} 
+                                    className="text-primary text-xs font-bold uppercase tracking-wider"
+                                >
+                                    Explore Solution &rarr;
+                                </Link>
                             </div>
                         ))}
                     </div>

@@ -18,8 +18,8 @@ export default function HomePage() {
                                 CloudCom Networks delivers next-generation communication, cloud infrastructure, cybersecurity and AI-enabled platforms for enterprises, governments and service providers.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Link href="/services" className="bg-primary hover:bg-primaryHover text-white px-8 py-3.5 rounded-md font-semibold text-sm transition-colors text-center shadow-lg shadow-blue-500/20">Request Consultation <i className="fa-solid fa-arrow-right ml-2"></i></Link>
-                                <Link href="/contact" className="bg-transparent hover:bg-white/5 text-white border border-white/20 px-8 py-3.5 rounded-md font-semibold text-sm transition-all text-center">Schedule Discovery Call <i className="fa-regular fa-calendar ml-2"></i></Link>
+                                <Link href="/contact?interest=Request%20Consultation%20(Home)" className="bg-primary hover:bg-primaryHover text-white px-8 py-3.5 rounded-md font-semibold text-sm transition-colors text-center shadow-lg shadow-blue-500/20">Request Consultation <i className="fa-solid fa-arrow-right ml-2"></i></Link>
+                                <Link href="/contact?interest=Discovery%20Call%20(Home)" className="bg-transparent hover:bg-white/5 text-white border border-white/20 px-8 py-3.5 rounded-md font-semibold text-sm transition-all text-center">Schedule Discovery Call <i className="fa-regular fa-calendar ml-2"></i></Link>
                             </div>
                         </div>
                         <div className="lg:w-2/5 relative">
@@ -140,6 +140,11 @@ export default function HomePage() {
                                 <span className="text-xs font-bold text-slate-900 leading-tight">{item.title}</span>
                             </Link>
                         ))}
+                    </div>
+
+                    <div className="mt-20 text-center">
+                        <h3 className="text-xl font-bold text-slate-900 mb-8">Explore Our Resources</h3>
+                        <Link href="/resources" className="bg-primary hover:bg-primaryHover text-white px-8 py-3 rounded-md font-semibold text-sm transition-colors shadow-sm inline-block">Explore All Resources &rarr;</Link>
                     </div>
                 </div>
             </section>

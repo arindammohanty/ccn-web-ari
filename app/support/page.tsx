@@ -27,7 +27,7 @@ export default function SupportPortalPage() {
                         <input 
                             type="text" 
                             placeholder="Search for help articles, services, or solutions..." 
-                            className="w-full pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-800" 
+                            className="w-full pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900" 
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -48,24 +48,24 @@ export default function SupportPortalPage() {
                             <p className="text-[10px] text-slate-500 mb-3">Submit a support request.</p>
                             <span className="text-primary text-xs font-bold">Create Ticket &rarr;</span>
                         </Link>
-                        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-card transition-shadow cursor-pointer">
+                        <Link href="/support/my-tickets" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-card transition-shadow cursor-pointer block">
                             <div className="w-12 h-12 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-xl mb-4"><i className="fa-solid fa-ticket"></i></div>
                             <h3 className="font-bold text-slate-900 text-sm mb-1">My Tickets</h3>
                             <p className="text-[10px] text-slate-500 mb-3">View and check status.</p>
                             <span className="text-primary text-xs font-bold">View Tickets &rarr;</span>
-                        </div>
+                        </Link>
                         <Link href="/support/knowledge-base" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-card transition-shadow cursor-pointer block">
                             <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4"><i className="fa-solid fa-book-open"></i></div>
                             <h3 className="font-bold text-slate-900 text-sm mb-1">Knowledge Base</h3>
                             <p className="text-[10px] text-slate-500 mb-3">Find answers to questions.</p>
                             <span className="text-primary text-xs font-bold">Browse Articles &rarr;</span>
                         </Link>
-                        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-card transition-shadow cursor-pointer">
+                        <Link href="/support/downloads" className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-card transition-shadow cursor-pointer block">
                             <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center text-xl mb-4"><i className="fa-solid fa-download"></i></div>
                             <h3 className="font-bold text-slate-900 text-sm mb-1">Downloads</h3>
                             <p className="text-[10px] text-slate-500 mb-3">Get software and updates.</p>
                             <span className="text-primary text-xs font-bold">View Downloads &rarr;</span>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </section>

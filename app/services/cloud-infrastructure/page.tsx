@@ -13,7 +13,7 @@ export default function CloudInfrastructurePage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Cloud Infrastructure</h1>
                             <h2 className="text-3xl font-bold text-blue-400 mb-6">Scalable. Secure. Reliable.</h2>
                             <p className="text-slate-300 mb-8 text-sm leading-relaxed">Build, deploy, and manage your IT infrastructure in the cloud with flexible models that deliver performance, security, and cost efficiency. Designed to support your business today and scale for tomorrow.</p>
-                            <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
+                            <Link href="/contact?interest=Consultation:%20Cloud%20Infrastructure" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                         <div className="lg:w-1/2 flex justify-end">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=400&q=80" className="rounded-xl shadow-2xl opacity-90 border border-white/10 mix-blend-screen w-full" alt="Cloud Infrastructure" />

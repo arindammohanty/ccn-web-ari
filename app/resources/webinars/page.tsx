@@ -32,7 +32,7 @@ export default function WebinarsPage() {
                                 <input 
                                     type="text" 
                                     placeholder="Search webinars..." 
-                                    className="w-full pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none"
+                                    className="w-full pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
@@ -63,9 +63,19 @@ export default function WebinarsPage() {
                                                 <p className="text-[10px] text-slate-500 mb-2 font-medium"><i className="fa-regular fa-calendar mr-1"></i> {webinar.date} &bull; {webinar.time}</p>
                                                 <h3 className="text-sm font-bold text-slate-900 mb-2">{webinar.title}</h3>
                                                 <p className="text-[10px] text-slate-600 mb-4 flex-grow">{webinar.desc}</p>
-                                                <button className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-1.5 rounded text-[11px] font-bold transition-colors">
-                                                    {webinar.status === 'On-Demand' ? 'Watch Recording' : 'Register Now'} &rarr;
-                                                </button>
+                                                
+                                                {webinar.status === 'On-Demand' ? (
+                                                    <button onClick={() => alert('Launching video player module...')} className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-1.5 rounded text-[11px] font-bold transition-colors">
+                                                        Watch Recording &rarr;
+                                                    </button>
+                                                ) : (
+                                                    <Link 
+                                                        href={`/contact?interest=${encodeURIComponent('Webinar Registration: ' + webinar.title)}`} 
+                                                        className="w-full block text-center border border-primary text-primary hover:bg-primary hover:text-white py-1.5 rounded text-[11px] font-bold transition-colors"
+                                                    >
+                                                        Register Now &rarr;
+                                                    </Link>
+                                                )}
                                             </div>
                                         </div>
                                     ))

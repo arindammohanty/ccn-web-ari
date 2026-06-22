@@ -13,7 +13,7 @@ export default function NetworkServicesPage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Network Services</h1>
                             <h2 className="text-3xl font-bold text-blue-400 mb-6">Reliable Connections. Limitless Possibilities.</h2>
                             <p className="text-slate-300 mb-8 text-sm leading-relaxed">CloudCom Networks delivers secure, scalable, and high-performance network solutions that connect your people, applications, and locations—seamlessly and securely.</p>
-                            <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
+                            <Link href="/contact?interest=Consultation:%20Network%20Services" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                         <div className="lg:w-1/2 flex justify-end">
                             <i className="fa-solid fa-network-wired text-9xl text-white/80 mix-blend-screen"></i>

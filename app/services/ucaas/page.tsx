@@ -12,7 +12,7 @@ export default function UCaaSPage() {
                     <p className="text-xl text-blue-400 font-medium mb-6">Communicate. Collaborate. Connect. Anywhere.</p>
                     <p className="text-slate-300 max-w-3xl mx-auto mb-10 text-sm">CloudCom Networks UCaaS solutions deliver enterprise-grade communication and collaboration capabilities over the cloud, helping your organization stay connected, productive, and agile.</p>
                     <div className="flex justify-center gap-4">
-                        <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors">Request a Demo &rarr;</Link>
+                        <Link href="/contact?interest=Demo%20Request:%20UCaaS" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors">Request a Demo &rarr;</Link>
                     </div>
                 </div>
             </section>

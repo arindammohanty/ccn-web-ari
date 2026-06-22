@@ -29,7 +29,7 @@ export default function IndustriesPage() {
                                 </div>
                                 <h3 className="font-bold text-slate-900 text-sm mb-2">{item.title}</h3>
                                 <p className="text-[11px] text-slate-500 mb-4 flex-grow">{item.desc}</p>
-                                <Link href="/contact" className="text-primary text-[10px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
+                                <Link href={`/contact?interest=${encodeURIComponent('Industry Inquiry: ' + item.title)}`} className="text-primary text-[10px] font-bold uppercase tracking-wider">Learn More &rarr;</Link>
                             </div>
                         ))}
                     </div>

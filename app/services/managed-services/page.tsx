@@ -12,7 +12,7 @@ export default function ManagedServicesPage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Managed Services</h1>
                             <h2 className="text-3xl font-bold text-blue-400 mb-6">Let us handle your technology so you can focus on your business.</h2>
                             <p className="text-slate-300 mb-8 text-sm leading-relaxed">At CCN, our Managed Services take the complexity out of IT and cloud operations. We act as your extended technology team—monitoring, maintaining, and optimizing your systems 24/7 so everything runs smoothly, securely, and efficiently.</p>
-                            <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
+                            <Link href="/contact?interest=Consultation:%20Managed%20Services" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                     </div>
                 </div>

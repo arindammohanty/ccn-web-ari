@@ -13,7 +13,7 @@ export default function CloudSecurityPage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Cloud Security</h1>
                             <h2 className="text-3xl font-bold text-blue-400 mb-6">Protect. Detect. Respond. Assure.</h2>
                             <p className="text-slate-300 mb-8 text-sm leading-relaxed">CloudCom Networks helps organizations build secure, resilient, and compliant cloud environments with a security-first approach across people, processes, and technology.</p>
-                            <Link href="/contact" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
+                            <Link href="/contact?interest=Consultation:%20Cloud%20Security" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-semibold transition-colors inline-block">Request Consultation &rarr;</Link>
                         </div>
                         <div className="lg:w-1/2 flex justify-center">
                             <i className="fa-solid fa-shield-halved text-9xl text-white/90 drop-shadow-[0_0_50px_rgba(59,130,246,0.6)]"></i>
