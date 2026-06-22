@@ -28,11 +28,11 @@ export default function WebinarsPage() {
                             <p className="text-lg text-slate-300 mb-6">Expert insights. Real conversations. Smarter decisions.</p>
                             <p className="text-sm text-slate-400 mb-8 max-w-md">Join industry experts and CloudCom Networks leaders as they discuss trends, strategies, and solutions that drive business success.</p>
                             <div className="relative max-w-md">
-                                <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                                <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 z-10"></i>
                                 <input 
                                     type="text" 
                                     placeholder="Search webinars..." 
-                                    className="w-full pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900"
+                                    className="w-full bg-white pl-10 pr-4 py-3 rounded-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-[#0b1121] placeholder:text-slate-400 relative z-0"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
