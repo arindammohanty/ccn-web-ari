@@ -1,180 +1,189 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import React, { useState } from 'react';
+import { 
+  Phone, Mail, MapPin, Linkedin, Twitter, Facebook, CheckCircle, ChevronDown
+} from 'lucide-react';
 
-function ContactFormContent() {
-    const searchParams = useSearchParams();
-    const interestParam = searchParams.get('interest');
-
-    const [formData, setFormData] = useState({
-        name: '', email: '', phone: '', company: '', subject: '', message: ''
-    });
-
-    // Auto-fill subject line based on the incoming route tracking parameter
-    useEffect(() => {
-        if (interestParam) {
-            setFormData(prev => ({ ...prev, subject: `Inquiry: ${interestParam}` }));
-        }
-    }, [interestParam]);
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        const trackedSection = interestParam ? interestParam : 'General Inquiry (Direct Visit)';
-        
-        // Construct the detailed popup message
-        const popupMessage = `
---- COMMUNICATION DISPATCH RECORD ---
-Target Section: ${trackedSection}
-
-User Details:
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not Provided'}
-Company: ${formData.company || 'Not Provided'}
-
-Message Contents:
-Subject: ${formData.subject}
-Message: ${formData.message}
-
-(This payload will be routed to the backend communications handler)
-        `.trim();
-
-        alert(popupMessage);
-        
-        // Reset form
-        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
-    };
-
-    return (
-        <form onSubmit={handleFormSubmit}>
-            <div className="grid md:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Full Name *" required className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
-                </div>
-                <div>
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email Address *" required className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
-                </div>
-                <div>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone Number" className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
-                </div>
-                <div>
-                    <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company / Organization" className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
-                </div>
-            </div>
-            <div className="mb-4">
-                <input type="text" name="subject" value={formData.subject} onChange={handleInputChange} placeholder="Subject *" required className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
-            </div>
-            <div className="mb-4">
-                <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your Message *" required rows={5} className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary resize-none text-slate-900"></textarea>
-            </div>
-            <div className="mb-6 flex items-start">
-                <input type="checkbox" id="terms" className="mt-0.5 mr-2" required />
-                <label htmlFor="terms" className="text-[10px] text-slate-500">I agree to the Privacy Policy and Terms of Service.</label>
-            </div>
-            <button type="submit" className="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded text-sm font-bold transition-colors shadow-md">Send Message &rarr;</button>
-        </form>
-    );
-}
+const FAQS = [
+  { q: "How can I get started with URI Technologies?", a: "Reach out to us via our Business Inquiry form, and our solutions architect team will guide you through our onboarding and discovery process." },
+  { q: "What industries do you specialize in?", a: "We cater to various sectors including the Public Sector, Energy & Utility, Industrial, IT & SaaS, Automotive, Healthcare, and Startups." },
+  { q: "Do you offer post-deployment support?", a: "Yes, we provide 24/7 post-deployment support, infrastructure monitoring, and continuous optimization for all our enterprise software rollouts." },
+  { q: "What cloud platforms do you support?", a: "We hold deep expertise across AWS, Microsoft Azure, and Google Cloud, building secure and compliant multi-cloud and hybrid environments." },
+  { q: "How long does a digital transformation audit take?", a: "Initial enterprise risk assessments and capability audits typically run between 2 to 4 weeks depending on the scale of your current infrastructure." }
+];
 
 export default function ContactPage() {
-    return (
-        <div className="animate-fade-in">
-            {/* Hero Section */}
-            <section className="bg-gradient-hero pt-16 pb-20 relative overflow-hidden">
-                 <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1920&h=1080&q=80')] bg-cover bg-center mix-blend-screen"></div>
-                 <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center">
-                     <div className="text-primary font-semibold text-xs mb-4">Home <i className="fa-solid fa-chevron-right text-[8px] mx-2 text-slate-500"></i> Contact Us</div>
-                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's Connect</h1>
-                     <p className="text-lg text-slate-300 max-w-3xl mx-auto mb-10">We'd love to hear from you. Whether you have a question about our services, need support, or want to explore a partnership, our team is here to help.</p>
-                 </div>
-            </section>
+  const [formType, setFormType] = useState<'business' | 'career'>('business');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-            <section className="py-16 bg-slateBg relative z-20 min-h-screen">
-                <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="flex flex-col lg:flex-row gap-8 mb-16">
-                        {/* Contact Info Cards */}
-                        <div className="lg:w-1/3">
-                            <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm h-full">
-                                <h3 className="text-xl font-bold text-slate-900 mb-6">Get in Touch</h3>
-                                <div className="space-y-6">
-                                    <div className="flex items-start">
-                                        <div className="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center text-lg mr-4 flex-shrink-0"><i className="fa-solid fa-phone"></i></div>
-                                        <div>
-                                            <h4 className="font-bold text-slate-900 text-sm">Phone</h4>
-                                            <p className="text-slate-600 text-xs font-semibold mt-1">+91 00000 00000</p>
-                                            <p className="text-slate-400 text-[10px] mt-1">Mon - Sat: 9:00 AM - 6:00 PM</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start">
-                                        <div className="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center text-lg mr-4 flex-shrink-0"><i className="fa-regular fa-envelope"></i></div>
-                                        <div>
-                                            <h4 className="font-bold text-slate-900 text-sm">Email</h4>
-                                            <p className="text-slate-600 text-xs font-semibold mt-1">info@cloudcomnet.com</p>
-                                            <p className="text-slate-400 text-[10px] mt-1">We respond within 24 hours</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start">
-                                        <div className="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center text-lg mr-4 flex-shrink-0"><i className="fa-solid fa-location-dot"></i></div>
-                                        <div>
-                                            <h4 className="font-bold text-slate-900 text-sm">Address</h4>
-                                            <p className="text-slate-600 text-xs mt-1">Bhubaneswar, Odisha, India</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start">
-                                        <div className="w-10 h-10 rounded-full bg-blue-50 text-primary flex items-center justify-center text-lg mr-4 flex-shrink-0"><i className="fa-solid fa-headset"></i></div>
-                                        <div>
-                                            <h4 className="font-bold text-slate-900 text-sm">Support</h4>
-                                            <Link href="/support/portal" className="text-primary hover:underline text-xs font-semibold mt-1 block">support.cloudcomnet.com</Link>
-                                            <p className="text-slate-400 text-[10px] mt-1">For existing customers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 5000);
+  };
 
-                        {/* Contact Form Wrapper */}
-                        <div className="lg:w-2/3 bg-white p-8 md:p-10 rounded-xl border border-slate-200 shadow-sm">
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Send Us a Message</h3>
-                            <p className="text-slate-500 text-xs mb-8">Fill out the form below and our team will get back to you shortly.</p>
-                            
-                            {/* Suspense boundary required by Next.js when using useSearchParams */}
-                            <Suspense fallback={<div className="text-slate-500 text-sm py-4">Loading form framework...</div>}>
-                                <ContactFormContent />
-                            </Suspense>
-                        </div>
-                    </div>
-
-                    {/* Offices */}
-                    <div className="text-center mb-8">
-                        <h3 className="text-2xl font-bold text-slate-900">Our Offices</h3>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-regular fa-building text-3xl text-primary mb-3"></i>
-                            <h4 className="font-bold text-slate-900 text-sm mb-1">Registered Office</h4>
-                            <p className="text-[11px] text-slate-500">Bhubaneswar, Odisha, India</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-handshake text-3xl text-primary mb-3"></i>
-                            <h4 className="font-bold text-slate-900 text-sm mb-1">Sales Enquiries</h4>
-                            <p className="text-[11px] text-slate-500">sales@cloudcomnet.com</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center">
-                            <i className="fa-solid fa-headset text-3xl text-primary mb-3"></i>
-                            <h4 className="font-bold text-slate-900 text-sm mb-1">Support & Services</h4>
-                            <p className="text-[11px] text-slate-500">support@cloudcomnet.com</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  return (
+    <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
+      
+      <section className="relative pt-20 pb-16 border-b border-slate-100 bg-slate-50/50 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-50"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="flex items-center text-sm font-medium text-slate-500 mb-4">
+            <span>Home</span>
+            <span className="mx-2 text-slate-300">{'>'}</span>
+            <span className="text-orange-500">Contact</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">Get In Touch</h1>
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed">
+            Whether you&apos;re looking to transform your enterprise infrastructure or join our engineering team, we&apos;d love to hear from you.
+          </p>
         </div>
-    );
+      </section>
+
+      <section className="py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          
+          <div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Let&apos;s Connect</h2>
+            <p className="text-lg text-slate-500 mb-12 leading-relaxed">
+              Reach out to our architects. We respond to all technical inquiries within one business day.
+            </p>
+            
+            <div className="space-y-8">
+              <div className="flex items-start space-x-4">
+                <div className="bg-orange-50 p-3 rounded-full text-orange-500 mt-1">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">Phone</h3>
+                  <p className="text-slate-500 mt-1">+91 674 6066050</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="bg-orange-50 p-3 rounded-full text-orange-500 mt-1">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">Email</h3>
+                  <p className="text-slate-500 mt-1">info@uritechnologies.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="bg-orange-50 p-3 rounded-full text-orange-500 mt-1">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">Address</h3>
+                  <p className="text-slate-500 mt-1 leading-relaxed">
+                    B-36, 2nd Floor, Rupali Street, Sahid Nagar,<br/>Bhubaneswar - 751007, Odisha
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-xl relative overflow-hidden">
+            {isSubmitted && (
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 animate-in fade-in zoom-in duration-300">
+                <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                  <CheckCircle className="w-10 h-10 text-green-500" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-slate-900 mb-2">Message Sent!</h3>
+                <p className="text-lg text-slate-500">Thank you. We will be in touch shortly.</p>
+              </div>
+            )}
+
+            <div className="flex bg-slate-100 p-1.5 rounded-xl mb-10">
+              <button 
+                onClick={() => setFormType('business')}
+                className={`flex-1 py-3 text-sm font-bold rounded-lg transition-all ${formType === 'business' ? 'bg-orange-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-900'}`}
+              >
+                Business Inquiry
+              </button>
+              <button 
+                onClick={() => setFormType('career')}
+                className={`flex-1 py-3 text-sm font-bold rounded-lg transition-all ${formType === 'career' ? 'bg-orange-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-900'}`}
+              >
+                Careers
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-bold text-slate-900 mb-2">Full Name <span className="text-red-500">*</span></label>
+                <input required type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+              </div>
+
+              {formType === 'business' && (
+                <div>
+                  <label className="block text-sm font-bold text-slate-900 mb-2">Company Name <span className="text-red-500">*</span></label>
+                  <input required type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+                </div>
+              )}
+
+              <div>
+                <label className="block text-sm font-bold text-slate-900 mb-2">{formType === 'business' ? 'Work Email' : 'Email Address'} <span className="text-red-500">*</span></label>
+                <input required type="email" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-slate-900 mb-2">Phone Number</label>
+                <input type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+              </div>
+
+              {formType === 'business' ? (
+                <>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-900 mb-2">Project Details <span className="text-red-500">*</span></label>
+                    <textarea required rows={4} placeholder="Tell us about the digital transformation objectives..." className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"></textarea>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-900 mb-2">Target Job Role <span className="text-red-500">*</span></label>
+                    <input required type="text" placeholder="e.g. ServiceNow Developer" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-900 mb-2">LinkedIn Profile URL</label>
+                    <input type="url" placeholder="https://linkedin.com/in/..." className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all" />
+                  </div>
+                </>
+              )}
+              
+              <button type="submit" className="w-full py-4 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20 mt-4">
+                {formType === 'business' ? 'Submit Inquiry' : 'Submit Application'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
+        
+        <div className="space-y-4">
+          {FAQS.map((faq, i) => (
+            <div key={i} className="border-b border-slate-200 pb-4">
+              <button 
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full flex justify-between items-center py-4 text-left focus:outline-none"
+              >
+                <span className="text-lg font-bold text-slate-900 pr-8">{faq.q}</span>
+                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0 ${openFaq === i ? 'rotate-180 text-orange-500' : ''}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === i ? 'max-h-40 opacity-100 mb-4' : 'max-h-0 opacity-0'}`}>
+                <p className="text-slate-600 leading-relaxed pt-2 pr-8">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  );
 }
