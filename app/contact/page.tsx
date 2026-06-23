@@ -4,24 +4,56 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+// Comprehensive list of global country codes
+const COUNTRY_CODES = [
+    { code: '+91', country: 'IN' }, { code: '+1', country: 'US/CA' }, { code: '+44', country: 'UK' },
+    { code: '+61', country: 'AU' }, { code: '+81', country: 'JP' }, { code: '+49', country: 'DE' },
+    { code: '+33', country: 'FR' }, { code: '+39', country: 'IT' }, { code: '+86', country: 'CN' },
+    { code: '+7', country: 'RU/KZ' }, { code: '+55', country: 'BR' }, { code: '+52', country: 'MX' },
+    { code: '+34', country: 'ES' }, { code: '+31', country: 'NL' }, { code: '+46', country: 'SE' },
+    { code: '+41', country: 'CH' }, { code: '+65', country: 'SG' }, { code: '+60', country: 'MY' },
+    { code: '+62', country: 'ID' }, { code: '+63', country: 'PH' }, { code: '+64', country: 'NZ' },
+    { code: '+82', country: 'KR' }, { code: '+27', country: 'ZA' }, { code: '+971', country: 'AE' },
+    { code: '+966', country: 'SA' }, { code: '+92', country: 'PK' }, { code: '+880', country: 'BD' },
+    { code: '+94', country: 'LK' }, { code: '+977', country: 'NP' }, { code: '+93', country: 'AF' },
+    { code: '+20', country: 'EG' }, { code: '+234', country: 'NG' }, { code: '+254', country: 'KE' },
+    { code: '+54', country: 'AR' }, { code: '+56', country: 'CL' }, { code: '+57', country: 'CO' },
+    { code: '+51', country: 'PE' }, { code: '+58', country: 'VE' }, { code: '+32', country: 'BE' },
+    { code: '+43', country: 'AT' }, { code: '+45', country: 'DK' }, { code: '+47', country: 'NO' },
+    { code: '+48', country: 'PL' }, { code: '+351', country: 'PT' }, { code: '+353', country: 'IE' },
+    { code: '+358', country: 'FI' }, { code: '+380', country: 'UA' }, { code: '+420', country: 'CZ' },
+    { code: '+36', country: 'HU' }, { code: '+40', country: 'RO' }, { code: '+30', country: 'GR' },
+    { code: '+90', country: 'TR' }, { code: '+98', country: 'IR' }, { code: '+964', country: 'IQ' },
+    { code: '+972', country: 'IL' }, { code: '+965', country: 'KW' }, { code: '+974', country: 'QA' },
+    // Add more as needed, but this covers the vast majority of international traffic
+];
+
 function ContactFormContent() {
     const searchParams = useSearchParams();
     const interestParam = searchParams.get('interest');
 
+    // Added countryCode to state, defaulting to +91
     const [formData, setFormData] = useState({
-        name: '', email: '', phone: '', company: '', subject: '', message: ''
+        name: '', email: '', countryCode: '+91', phone: '', company: '', subject: '', message: ''
     });
 
-    // Auto-fill subject line based on the incoming route tracking parameter
     useEffect(() => {
         if (interestParam) {
             setFormData(prev => ({ ...prev, subject: `Inquiry: ${interestParam}` }));
         }
     }, [interestParam]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Specialized handler to enforce strict 10-digit numerical entry for the phone number
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const numericValue = e.target.value.replace(/\D/g, ''); // Strip all non-numeric characters
+        if (numericValue.length <= 10) {
+            setFormData(prev => ({ ...prev, phone: numericValue }));
+        }
     };
 
     const handleFormSubmit = (e: React.FormEvent) => {
@@ -29,7 +61,9 @@ function ContactFormContent() {
         
         const trackedSection = interestParam ? interestParam : 'General Inquiry (Direct Visit)';
         
-        // Construct the detailed popup message
+        // Format the phone number properly if it was provided
+        const formattedPhone = formData.phone ? `${formData.countryCode} ${formData.phone}` : 'Not Provided';
+        
         const popupMessage = `
 --- COMMUNICATION DISPATCH RECORD ---
 Target Section: ${trackedSection}
@@ -37,7 +71,7 @@ Target Section: ${trackedSection}
 User Details:
 Name: ${formData.name}
 Email: ${formData.email}
-Phone: ${formData.phone || 'Not Provided'}
+Phone: ${formattedPhone}
 Company: ${formData.company || 'Not Provided'}
 
 Message Contents:
@@ -49,8 +83,8 @@ Message: ${formData.message}
 
         alert(popupMessage);
         
-        // Reset form
-        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+        // Reset form, keeping the default +91 country code intact
+        setFormData({ name: '', email: '', countryCode: '+91', phone: '', company: '', subject: '', message: '' });
     };
 
     return (
@@ -62,9 +96,35 @@ Message: ${formData.message}
                 <div>
                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email Address *" required className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
                 </div>
-                <div>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone Number" className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
+                
+                {/* Updated Phone Field with Country Code Selector */}
+                <div className="flex">
+                    <select 
+                        name="countryCode" 
+                        value={formData.countryCode} 
+                        onChange={handleInputChange}
+                        className="px-2 py-2.5 rounded-l border border-r-0 border-slate-200 text-xs outline-none focus:border-primary text-slate-900 bg-white"
+                    >
+                        {COUNTRY_CODES.map((item) => (
+                            <option key={item.code} value={item.code}>
+                                {item.country} ({item.code})
+                            </option>
+                        ))}
+                    </select>
+                    <input 
+                        type="tel" 
+                        name="phone" 
+                        value={formData.phone} 
+                        onChange={handlePhoneChange} 
+                        placeholder="Phone Number" 
+                        pattern="\d{10}"
+                        minLength={10}
+                        maxLength={10}
+                        title="Please enter exactly 10 digits"
+                        className="w-full px-4 py-2.5 rounded-r border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" 
+                    />
                 </div>
+
                 <div>
                     <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company / Organization" className="w-full px-4 py-2.5 rounded border border-slate-200 text-xs outline-none focus:border-primary text-slate-900" />
                 </div>
