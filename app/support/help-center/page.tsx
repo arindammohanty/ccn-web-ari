@@ -10,9 +10,9 @@ export default function HelpCenterPage() {
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Help Center</h1>
                     <p className="text-lg text-slate-300 max-w-2xl mx-auto">Fast, friendly help when you need it. Our Help Center is your one-stop destination for quick answers.</p>
                     <div className="relative max-w-xl mx-auto flex mt-8">
-                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
-                        <input type="text" placeholder="Search for solutions by keyword or topic..." className="w-full pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900" />
-                        <button className="bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-r-md font-bold text-sm transition-colors">Search</button>
+                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 z-10"></i>
+                        <input type="text" placeholder="Search for solutions by keyword or topic..." className="w-full bg-white pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-[#0b1121] placeholder:text-slate-400 relative z-0" />
+                        <button className="bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-r-md font-bold text-sm transition-colors z-10">Search</button>
                     </div>
                 </div>
             </section>

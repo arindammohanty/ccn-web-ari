@@ -23,15 +23,15 @@ export default function SupportPortalPage() {
                     <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">Welcome! How can we help you today? Raise a request, track progress, and get the support you need.</p>
                     
                     <form onSubmit={handleSearchSubmit} className="relative max-w-xl mx-auto flex">
-                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 z-10"></i>
                         <input 
                             type="text" 
                             placeholder="Search for help articles, services, or solutions..." 
-                            className="w-full pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-slate-900" 
+                            className="w-full bg-white pl-10 pr-4 py-3 rounded-l-md text-sm border-0 focus:ring-2 focus:ring-primary shadow-lg outline-none text-[#0b1121] placeholder:text-slate-400 relative z-0" 
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button type="submit" className="bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-r-md font-bold text-sm transition-colors whitespace-nowrap">
+                        <button type="submit" className="bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-r-md font-bold text-sm transition-colors whitespace-nowrap z-10">
                             Search
                         </button>
                     </form>
