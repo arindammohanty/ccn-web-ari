@@ -30,11 +30,11 @@ export default function Navbar() {
             <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="container mx-auto px-6 max-w-7xl h-20 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <i className="fa-solid fa-cloud text-3xl text-primary"></i>
-                        <div className="flex flex-col">
-                            <span className="text-xl font-bold text-slate-900 leading-none tracking-tight">CloudCom</span>
-                            <span className="text-[9px] font-bold text-slate-500 tracking-[0.2em] uppercase mt-0.5">Networks</span>
-                        </div>
+                        <img 
+                            src="/media/logo.png" 
+                            alt="CloudCom Networks Logo" 
+                            className="h-17 w-auto object-contain" 
+                        />
                     </Link>
 
                     <div className="hidden lg:flex h-full items-center space-x-8">

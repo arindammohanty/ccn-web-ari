@@ -19,8 +19,12 @@ export default function Footer() {
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-16">
                         <div className="lg:col-span-2">
-                            <div className="flex items-center gap-2 mb-6">
-                                <i className="fa-solid fa-cloud text-3xl text-primary"></i>
+                            <div className="flex items-center gap-2 mb-3">
+                                <img
+                                src="/media/logo.png"
+                                alt="CloudCom Networks Logo"
+                                className="h-auto w-45 object-contain"
+                                />
                                 <div className="flex flex-col text-white">
                                     <span className="text-xl font-bold leading-none tracking-tight">CloudCom</span>
                                     <span className="text-[9px] font-bold text-slate-400 tracking-[0.2em] uppercase mt-0.5">Networks</span>

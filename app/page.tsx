@@ -23,7 +23,7 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="lg:w-2/5 relative">
-                             <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Cloud Network" className="w-full rounded-xl shadow-2xl border border-white/10 opacity-90 mix-blend-screen" />
+                             <img src="/media/logo.jpeg" alt="Cloud Com logo" className="w-full rounded-xl shadow-2xl border border-white/10 opacity-90 mix-blend-screen" />
                         </div>
                     </div>
                 </div>
