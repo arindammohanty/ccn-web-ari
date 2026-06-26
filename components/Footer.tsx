@@ -21,7 +21,7 @@ export default function Footer() {
                         <div className="lg:col-span-2">
                             <div className="flex items-center gap-2 mb-3">
                                 <img
-                                src="/media/logo.jpeg"
+                                src="/media/logo.png"
                                 alt="CloudCom Networks Logo"
                                 className="h-auto w-45 object-contain"
                                 />
